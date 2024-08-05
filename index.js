@@ -14,6 +14,9 @@ const requestLogger = (request, response, next) => {
 app.use(express.json())
 app.use(requestLogger)
 
+const cors = require('cors')
+app.use(cors())
+
 let persons = [
     { 
       "id": "1",
@@ -92,7 +95,7 @@ app.post('/api/persons', (request, response) => {
 
 app.delete('/api/persons/:id', (request, response) => {
     const id = request.params.id
-    persons = persons.filter((person) => person.id !== id)
+    persons = persons.filter((person) => person.id != id)
 
     response.status(204).end()
 })
